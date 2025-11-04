@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta
+  http-equiv="Content-Security-Policy"
+  content="script-src 'nonce-aem' 'strict-dynamic' 'unsafe-inline' http: https:; base-uri 'self'; object-src 'none';"
+  move-to-http-header="true"
+>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<script nonce="aem" src="/scripts/aem.js" type="module"></script>
+<script nonce="aem" src="/scripts/scripts.js" type="module"></script>
+<link rel="stylesheet" href="/styles/styles.css"/>
+</head>
+<body>
+<header></header>
+<main>
+<div><h1 id="wknd-trendsetters-design-system">WKND Trendsetters Design System</h1><blockquote>
+<p><strong>Complete design system reference extracted from styles.css and all block implementations</strong></p>
+<p>Use this guide when generating new blocks or pages to maintain visual consistency</p>
+</blockquote></div>
+<div><h2 id="table-of-contents">Table of Contents</h2><ol>
+<li><a href="#color-palette">Color Palette</a></li>
+<li><a href="#typography">Typography</a></li>
+<li><a href="#spacing-system">Spacing System</a></li>
+<li><a href="#components">Components</a></li>
+<li><a href="#layout-patterns">Layout Patterns</a></li>
+<li><a href="#responsive-breakpoints">Responsive Breakpoints</a></li>
+<li><a href="#effects--shadows">Effects &#x26; Shadows</a></li>
+<li><a href="#animation--transitions">Animation &#x26; Transitions</a></li>
+</ol></div>
+<div><h2 id="color-palette">Color Palette</h2><h3 id="primary-colors">Primary Colors</h3><pre><code class="language-css">--background-color: #fff;           /* White background */
+--dark-color: #000;                 /* Pure black */
+--light-color: #f7f8f5;             /* Off-white/light gray */
+--accent-color: #f4fe8b;            /* Neon yellow (signature color) */
+</code></pre><h3 id="text-colors">Text Colors</h3><pre><code class="language-css">--text-color: #000;                        /* Black text on light backgrounds */
+--text-color-inverse: #fff;                /* White text on dark backgrounds */
+--text-color-muted: rgba(255, 255, 255, 0.7);  /* Muted white (70% opacity) */
+</code></pre><h3 id="accent-variations">Accent Variations</h3><pre><code class="language-css">--accent-color-transparent: rgba(244, 254, 139, 0.5);  /* 50% opacity yellow */
+--accent-color-bg: rgba(244, 254, 139, 0.1);           /* 10% opacity yellow background */
+</code></pre><h3 id="usage-guidelines">Usage Guidelines</h3><ul>
+<li><strong>Black backgrounds</strong> for dramatic sections (use <code>.section.dark</code>)</li>
+<li><strong>White backgrounds</strong> for standard content (default or <code>.section.light</code>)</li>
+<li><strong>Light gray backgrounds</strong> for subtle section separation (<code>.section.grey</code>)</li>
+<li><strong>Neon yellow accent</strong> for buttons, highlights, and interactive elements</li>
+<li><strong>Text on dark</strong> always use <code>--text-color-inverse</code> for headings, <code>--text-color-muted</code> for body text</li>
+</ul></div>
+<div><h2 id="typography">Typography</h2><h3 id="font-families">Font Families</h3><pre><code class="language-css">--body-font-family: "Instrument Sans", instrument-sans-fallback, sans-serif;
+--heading-font-family: Syncopate, syncopate-fallback, sans-serif;
+</code></pre><p><strong>Source:</strong> Google Fonts</p><pre><code class="language-html">@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&#x26;family=Syncopate:wght@400;700&#x26;display=swap');
+</code></pre><h3 id="typography-scale">Typography Scale</h3><h4 id="body-text-mobile-first">Body Text (Mobile-first)</h4><pre><code class="language-css">--body-font-size-m: 14.08px;   /* Standard body text */
+--body-font-size-s: 14.08px;   /* Smaller body text */
+--body-font-size-xs: 14.08px;  /* Extra small text */
+--body-line-height: 1.6;       /* Comfortable reading */
+</code></pre><h4 id="body-text-desktop-900px">Body Text (Desktop ≥900px)</h4><pre><code class="language-css">--body-font-size-m: 18px;
+--body-font-size-s: 16px;
+--body-font-size-xs: 14px;
+</code></pre><h4 id="heading-sizes-mobile-first">Heading Sizes (Mobile-first)</h4><pre><code class="language-css">--heading-font-size-xxl: 90.4px;   /* H1 - Hero headlines */
+--heading-font-size-xl: 45.28px;   /* H2 - Section headings */
+--heading-font-size-l: 22.56px;    /* H3 - Sub-sections */
+--heading-font-size-m: 22.56px;    /* H4 */
+--heading-font-size-s: 22.56px;    /* H5 */
+--heading-font-size-xs: 22.56px;   /* H6 */
+</code></pre><h4 id="heading-sizes-desktop-900px">Heading Sizes (Desktop ≥900px)</h4><pre><code class="language-css">--heading-font-size-xxl: 45px;     /* Slightly smaller on desktop */
+--heading-font-size-xl: 36px;
+--heading-font-size-l: 28px;
+--heading-font-size-m: 22px;
+--heading-font-size-s: 20px;
+--heading-font-size-xs: 18px;
+</code></pre><h3 id="heading-properties">Heading Properties</h3><pre><code class="language-css">--heading-font-weight: 400;       /* Regular weight (not bold) */
+--heading-line-height: 1.04;      /* Tight line height for impact */
+--h1-letter-spacing: -0.904px;    /* Negative spacing for large text */
+--h2-letter-spacing: -0.4528px;
+--h3-letter-spacing: -0.2256px;
+--h1-margin-bottom: 27.12px;
+--h2-margin-top: 20px;
+--h3-margin-bottom: 11.28px;
+</code></pre><h3 id="typography-usage-rules">Typography Usage Rules</h3><ol>
+<li><strong>Always use Syncopate for headings</strong> - distinctive, condensed, impactful</li>
+<li><strong>Always use Instrument Sans for body</strong> - clean, modern, readable</li>
+<li><strong>Headings are regular weight (400)</strong> - not bold, relies on font design</li>
+<li><strong>Large headings use negative letter-spacing</strong> - tighter, more compact</li>
+<li><strong>Line height 1.04 for headings</strong> - tight, dramatic</li>
+<li><strong>Line height 1.6 for body</strong> - comfortable reading</li>
+</ol></div>
+<div><h2 id="spacing-system">Spacing System</h2><h3 id="section-spacing">Section Spacing</h3><pre><code class="language-css">--section-padding: 128px 0;   /* Generous vertical rhythm */
+</code></pre><h3 id="container-widths">Container Widths</h3><pre><code class="language-css">max-width: 1200px;           /* Standard content container */
+max-width: 1248px;           /* Slightly wider for cards/grids */
+padding: 0 24px;             /* Mobile horizontal padding */
+padding: 0 32px;             /* Desktop horizontal padding (≥900px) */
+</code></pre><h3 id="common-gaps">Common Gaps</h3><pre><code class="language-css">gap: 8px;         /* Tight spacing (button groups) */
+gap: 16px;        /* Small spacing (card metadata) */
+gap: 24px;        /* Medium spacing (mobile columns) */
+gap: 32px;        /* Standard spacing (cards, grids) */
+gap: 48px;        /* Large spacing (card rows) */
+gap: 64px;        /* Extra large spacing (hero sections) */
+gap: 96px;        /* Huge spacing (columns-banner desktop) */
+</code></pre><h3 id="spacing-philosophy">Spacing Philosophy</h3><ul>
+<li><strong>Mobile:</strong> More compact, smaller gaps</li>
+<li><strong>Desktop:</strong> Generous spacing, room to breathe</li>
+<li><strong>Consistent multiples:</strong> 8px, 16px, 24px, 32px, 48px, 64px, 96px, 128px</li>
+</ul></div>
+<div><h2 id="components">Components</h2><h3 id="buttons">Buttons</h3><h4 id="default-button-style">Default Button Style</h4><pre><code class="language-css">border-radius: 1600px;  /* Fully rounded pill shape */
+padding: 16px 24px;
+font-size: 16px;
+font-weight: 400;
+color: var(--text-color);
+background-color: transparent;
+box-shadow: rgb(0, 0, 0) 0px 0px 0px 2px inset,     /* Black border */
+            rgba(244, 254, 139, 0.5) 4px 4px 0px 0px;  /* Yellow offset shadow */
+transition: border-color 0.2s, color 0.2s,
+            background-color 0.2s cubic-bezier(0.165, 0.84, 0.44, 1),
+            box-shadow 0.2s;
+</code></pre><h4 id="button-hover-state">Button Hover State</h4><pre><code class="language-css">background-color: rgba(244, 254, 139, 0.1);  /* Subtle yellow tint */
+box-shadow: rgb(0, 0, 0) 0px 0px 0px 2px inset,
+            rgba(244, 254, 139, 0.5) 7px 7px 0px 0px;  /* Larger offset on hover */
+</code></pre><h4 id="button-variations">Button Variations</h4><p><strong>Primary Accent Button:</strong></p><pre><code class="language-css">background-color: rgb(244, 254, 139);  /* Solid yellow background */
+color: rgb(0, 0, 0);
+box-shadow: none;  /* No shadow */
+</code></pre><p><strong>White Button on Dark Background:</strong></p><pre><code class="language-css">color: rgb(255, 255, 255);
+box-shadow: rgb(255, 255, 255) 0px 0px 0px 2px inset,
+            rgba(244, 254, 139, 0.5) 4px 4px 0px 0px;
+</code></pre><p><strong>Simple Border Button:</strong></p><pre><code class="language-css">box-shadow: rgb(0, 0, 0) 0px 0px 0px 2px inset;  /* Just black border, no offset */
+</code></pre><h3 id="cards">Cards</h3><h4 id="standard-card">Standard Card</h4><pre><code class="language-css">border-radius: 20px;
+box-shadow: rgb(0, 0, 0) 0px 0px 0px 2px,           /* 2px black border */
+            rgba(0, 0, 0, 0.2) 6px 6px 0px 0px;     /* Offset shadow */
+background-color: transparent;
+overflow: hidden;
+</code></pre><p><strong>Usage:</strong> <code>cards-trends</code>, <code>banner-cta</code>, <code>hero-feature</code></p><h4 id="card-images">Card Images</h4><pre><code class="language-css">border-radius: 20px;
+object-fit: cover;
+</code></pre><p>Common aspect ratios:</p><ul>
+<li><strong>1:1</strong> - Square images (columns-pictures, profile images)</li>
+<li><strong>3:2</strong> - Landscape cards (cards-trends)</li>
+<li><strong>2:3</strong> - Portrait cards (cards-articles)</li>
+</ul><h3 id="tagsbadges">Tags/Badges</h3><pre><code class="language-css">background-color: rgba(0, 0, 0, 0.1);  /* Subtle gray background */
+color: rgb(0, 0, 0);
+font-size: 12px;
+font-weight: 400;
+padding: 2px 9px;
+border-radius: 1600px;  /* Pill shape */
+text-transform: uppercase;
+letter-spacing: 0.42px;
+</code></pre><p><strong>Usage:</strong> Category tags in <code>cards-articles</code>, <code>cards-trends</code></p><h3 id="images">Images</h3><pre><code class="language-css">border-radius: 20px;        /* Consistent rounded corners */
+object-fit: cover;          /* Crop to fill container */
+</code></pre></div>
+<div><h2 id="layout-patterns">Layout Patterns</h2><h3 id="grid-patterns">Grid Patterns</h3><h4 id="column-grid-desktop">2-Column Grid (Desktop)</h4><pre><code class="language-css">display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 48px;
+</code></pre><p><strong>Usage:</strong> <code>cards</code> block (blog-style cards), <code>columns-banner</code></p><h4 id="column-grid">3-Column Grid</h4><pre><code class="language-css">display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 32px;
+</code></pre><p><strong>Usage:</strong> <code>cards-trends</code> (tablet), 3-column layouts</p><h4 id="column-grid-1">4-Column Grid</h4><pre><code class="language-css">display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 32px;
+</code></pre><p><strong>Usage:</strong> <code>cards-articles</code>, <code>cards-trends</code> (desktop ≥1200px)</p><h4 id="column-fixed-width-grid">3-Column Fixed Width Grid</h4><pre><code class="language-css">display: grid;
+grid-template-columns: 368px 368px 368px;  /* Fixed column widths */
+gap: 32px;
+</code></pre><p><strong>Usage:</strong> <code>text-feature</code>, <code>banner-cta</code> (precise desktop layouts)</p><h3 id="mobile-first-approach">Mobile-First Approach</h3><pre><code class="language-css">/* Mobile default */
+grid-template-columns: 1fr;
+
+/* Tablet (≥600px) */
+@media (width >= 600px) {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Desktop (≥900px) */
+@media (width >= 900px) {
+  grid-template-columns: repeat(4, 1fr);
+}
+</code></pre><h3 id="flex-patterns">Flex Patterns</h3><h4 id="horizontal-button-group">Horizontal Button Group</h4><pre><code class="language-css">display: flex;
+gap: 8px;
+justify-content: center;  /* or flex-start */
+align-items: center;
+</code></pre><h4 id="column-to-row">Column to Row</h4><pre><code class="language-css">/* Mobile */
+display: flex;
+flex-direction: column;
+gap: 24px;
+
+/* Desktop (≥900px) */
+@media (width >= 900px) {
+  flex-direction: row;
+  gap: 96px;
+  align-items: center;
+}
+</code></pre><h3 id="full-width-sections">Full-Width Sections</h3><pre><code class="language-css">.section > div.block-wrapper {
+  max-width: unset;  /* Remove max-width */
+  padding: 0;        /* Remove horizontal padding */
+}
+</code></pre><p><strong>Usage:</strong> <code>hero-grid</code>, <code>tabs</code>, <code>hero-feature</code>, <code>columns-pictures</code></p></div>
+<div><h2 id="responsive-breakpoints">Responsive Breakpoints</h2><h3 id="standard-breakpoints">Standard Breakpoints</h3><pre><code class="language-css">/* Mobile-first (default): 0-599px */
+
+/* Tablet: 600px-899px */
+@media (width >= 600px) { }
+
+/* Desktop: 900px+ */
+@media (width >= 900px) { }
+
+/* Large Desktop: 1200px+ */
+@media (width >= 1200px) { }
+</code></pre><h3 id="breakpoint-strategy">Breakpoint Strategy</h3><ol>
+<li><strong>Mobile-first</strong> - start with mobile layout</li>
+<li><strong>600px</strong> - tablets, 2-column grids</li>
+<li><strong>900px</strong> - desktop, full layouts, larger typography</li>
+<li><strong>1200px</strong> - optional, for 4-column grids</li>
+</ol><h3 id="responsive-typography">Responsive Typography</h3><p>Mobile and desktop have <strong>different typography scales</strong> (see Typography section)</p></div>
+<div><h2 id="effects--shadows">Effects &#x26; Shadows</h2><h3 id="card-shadow-signature-style">Card Shadow (Signature Style)</h3><pre><code class="language-css">box-shadow: rgb(0, 0, 0) 0px 0px 0px 2px,           /* 2px solid border */
+            rgba(0, 0, 0, 0.2) 6px 6px 0px 0px;     /* Offset drop shadow */
+</code></pre><h3 id="button-shadow-yellow-glow">Button Shadow (Yellow Glow)</h3><pre><code class="language-css">box-shadow: rgb(0, 0, 0) 0px 0px 0px 2px inset,
+            rgba(244, 254, 139, 0.5) 4px 4px 0px 0px;  /* Yellow offset */
+</code></pre><h3 id="button-shadow-hover">Button Shadow Hover</h3><pre><code class="language-css">box-shadow: rgb(0, 0, 0) 0px 0px 0px 2px inset,
+            rgba(244, 254, 139, 0.5) 7px 7px 0px 0px;  /* Larger offset */
+</code></pre><h3 id="dark-overlay-on-images">Dark Overlay on Images</h3><pre><code class="language-css">background-color: rgba(0, 0, 0, 0.5);   /* 50% black overlay */
+background-color: rgba(0, 0, 0, 0.6);   /* 60% black overlay (hero-cta) */
+</code></pre></div>
+<div><h2 id="animation--transitions">Animation &#x26; Transitions</h2><h3 id="standard-transitions">Standard Transitions</h3><pre><code class="language-css">--link-transition: color 0.2s;
+--button-transition: border-color 0.2s, color 0.2s,
+                     background-color 0.2s cubic-bezier(0.165, 0.84, 0.44, 1),
+                     box-shadow 0.2s;
+</code></pre><h3 id="common-transition-patterns">Common Transition Patterns</h3><h4 id="opacity-hover">Opacity Hover</h4><pre><code class="language-css">transition: opacity 0.3s ease;
+</code></pre><pre><code class="language-css">.element:hover {
+  opacity: 0.9;  /* Subtle fade */
+}
+</code></pre><h4 id="transform-hover-link-arrow">Transform Hover (Link Arrow)</h4><pre><code class="language-css">.link::after {
+  content: ' →';
+  margin-left: 4px;
+  transition: margin-left 0.2s ease;
+}
+
+.link:hover::after {
+  margin-left: 8px;  /* Arrow moves right */
+}
+</code></pre><h4 id="accordion-expand">Accordion Expand</h4><pre><code class="language-css">@keyframes accordion-expand {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</code></pre><h3 id="accessibility---reduced-motion">Accessibility - Reduced Motion</h3><pre><code class="language-css">@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</code></pre></div>
+<div><h2 id="block-specific-patterns">Block-Specific Patterns</h2><h3 id="hero-blocks">Hero Blocks</h3><p><strong>Shared Hero Characteristics:</strong></p><ul>
+<li>Centered text</li>
+<li>Large heading (90.4px desktop, 45px+ mobile)</li>
+<li>Button group below text</li>
+<li>Generous padding (128px, 96px, 64px responsive)</li>
+</ul><p><strong>Hero Types:</strong></p><ol>
+<li><strong>hero</strong> - Simple centered hero with text and buttons</li>
+<li><strong>hero-cta</strong> - Hero with background image and dark overlay</li>
+<li><strong>hero-feature</strong> - Hero with background image, card overlay, and side image</li>
+<li><strong>columns-banner</strong> - Two-column hero with image and content side-by-side</li>
+</ol><h3 id="card-blocks">Card Blocks</h3><p><strong>Card Grid Characteristics:</strong></p><ul>
+<li><code>list-style: none</code> to remove bullets</li>
+<li>Grid layout with responsive columns</li>
+<li><code>border-radius: 20px</code> on images</li>
+<li>Tag/category labels using pill-shaped badges</li>
+<li>Consistent image aspect ratios</li>
+</ul><p><strong>Card Types:</strong></p><ol>
+<li><strong>cards</strong> - Horizontal layout, image left, content right (blog-style)</li>
+<li><strong>cards-trends</strong> - Vertical cards with image top, content bottom, card shadows</li>
+<li><strong>cards-articles</strong> - Vertical portrait cards, 4-column grid on desktop</li>
+</ol><h3 id="text-blocks">Text Blocks</h3><ol>
+<li><strong>text-feature</strong> - Eyebrow + heading + body + CTA button</li>
+<li><strong>banner-cta</strong> - Card-style container with 3-column grid (text + button)</li>
+<li><strong>columns-banner</strong> - Split layout with image and content columns</li>
+</ol><h3 id="interactive-blocks">Interactive Blocks</h3><ol>
+<li><strong>accordion</strong> - Collapsible Q&#x26;A sections with chevron icons</li>
+<li><strong>tabs</strong> - Tabbed content navigation with underline indicators</li>
+</ol></div>
+<div><h2 id="quick-reference-common-patterns">Quick Reference: Common Patterns</h2><h3 id="section-with-dark-background">Section with Dark Background</h3><pre><code class="language-css">.section.dark {
+  background-color: var(--dark-color);
+  color: var(--text-color-inverse);
+  padding: var(--section-padding);
+}
+</code></pre><h3 id="centered-content-container">Centered Content Container</h3><pre><code class="language-css">.block-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (width >= 900px) {
+  .block-content {
+    padding: 0 32px;
+  }
+}
+</code></pre><h3 id="card-grid-responsive">Card Grid (Responsive)</h3><pre><code class="language-css">.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (width >= 600px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+</code></pre><h3 id="button-with-yellow-glow">Button with Yellow Glow</h3><pre><code class="language-css">.button {
+  padding: 16px 24px;
+  border-radius: 1600px;
+  background-color: transparent;
+  box-shadow: rgb(0, 0, 0) 0px 0px 0px 2px inset,
+              rgba(244, 254, 139, 0.5) 4px 4px 0px 0px;
+  transition: box-shadow 0.2s, background-color 0.2s;
+}
+
+.button:hover {
+  background-color: rgba(244, 254, 139, 0.1);
+  box-shadow: rgb(0, 0, 0) 0px 0px 0px 2px inset,
+              rgba(244, 254, 139, 0.5) 7px 7px 0px 0px;
+}
+</code></pre><h3 id="rounded-image-with-aspect-ratio">Rounded Image with Aspect Ratio</h3><pre><code class="language-css">img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 20px;
+}
+</code></pre></div>
+<div><h2 id="design-principles">Design Principles</h2><h3 id="visual-identity">Visual Identity</h3><ol>
+<li><strong>Bold, high-contrast</strong> - black and white foundation</li>
+<li><strong>Neon yellow accent</strong> - signature color for energy and youth</li>
+<li><strong>Rounded corners everywhere</strong> - friendly, modern (20px radius, 1600px buttons)</li>
+<li><strong>Offset shadows</strong> - distinctive card and button style</li>
+<li><strong>Tight condensed headings</strong> - Syncopate font with negative letter-spacing</li>
+</ol><h3 id="typography-philosophy">Typography Philosophy</h3><ul>
+<li><strong>Headings:</strong> Syncopate (condensed, geometric, impactful)</li>
+<li><strong>Body:</strong> Instrument Sans (clean, neutral, readable)</li>
+<li><strong>Weight:</strong> Regular (400) for everything - font design provides personality</li>
+<li><strong>Scale:</strong> Large jumps between sizes for clear hierarchy</li>
+</ul><h3 id="layout-philosophy">Layout Philosophy</h3><ul>
+<li><strong>Mobile-first</strong> - design for small screens first</li>
+<li><strong>Grid-based</strong> - CSS Grid for most layouts</li>
+<li><strong>Generous spacing</strong> - lots of breathing room on desktop</li>
+<li><strong>Full-width sections</strong> - some blocks break out of container</li>
+</ul><h3 id="color-philosophy">Color Philosophy</h3><ul>
+<li><strong>Monochromatic base</strong> - black and white</li>
+<li><strong>Single accent</strong> - neon yellow for highlights</li>
+<li><strong>Transparency</strong> - overlays and muted text use alpha channels</li>
+<li><strong>Section backgrounds</strong> - white, light gray, or pure black</li>
+</ul></div>
+<div><h2 id="usage-guidelines-for-new-content">Usage Guidelines for New Content</h2><h3 id="creating-a-new-block">Creating a New Block</h3><ol>
+<li>Start with mobile-first layout (<code>grid-template-columns: 1fr</code>)</li>
+<li>Use standard breakpoints (600px, 900px, 1200px)</li>
+<li>Apply <code>border-radius: 20px</code> to all images</li>
+<li>Use design tokens for colors, fonts, spacing</li>
+<li>Follow button shadow pattern for CTAs</li>
+<li>Add card shadows if using card-style containers</li>
+</ol><h3 id="creating-a-new-page">Creating a New Page</h3><ol>
+<li>Mix light, grey, and dark sections for visual rhythm</li>
+<li>Start with a hero block for impact</li>
+<li>Use cards for listing content</li>
+<li>Add text-feature or columns-banner for storytelling</li>
+<li>End with a CTA (banner-cta or hero-cta)</li>
+<li>Ensure proper section spacing (128px vertical)</li>
+</ol><h3 id="color-selection">Color Selection</h3><ul>
+<li><strong>Hero sections:</strong> Often dark background</li>
+<li><strong>Content sections:</strong> Usually white or light gray</li>
+<li><strong>CTA sections:</strong> Often dark for emphasis</li>
+<li><strong>Buttons:</strong> Use yellow glow shadow pattern</li>
+</ul><h3 id="typography-selection">Typography Selection</h3><ul>
+<li><strong>H1:</strong> 90.4px (desktop), 45px (mobile) - for hero headlines only</li>
+<li><strong>H2:</strong> 45.28px (desktop), 36px (mobile) - for section headers</li>
+<li><strong>H3:</strong> 22.56px - for card titles, sub-sections</li>
+<li><strong>Body:</strong> 16-18px - for readable paragraph text</li>
+</ul></div>
+<div><h2 id="checklist-design-system-compliance">Checklist: Design System Compliance</h2><p>When creating new content, verify:</p><ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Using Syncopate for headings, Instrument Sans for body</li>
+<li class="task-list-item"><input type="checkbox" disabled> Headings are regular weight (400), not bold</li>
+<li class="task-list-item"><input type="checkbox" disabled> Colors use design tokens (--background-color, --accent-color, etc.)</li>
+<li class="task-list-item"><input type="checkbox" disabled> Images have <code>border-radius: 20px</code></li>
+<li class="task-list-item"><input type="checkbox" disabled> Buttons use pill shape (<code>border-radius: 1600px</code>)</li>
+<li class="task-list-item"><input type="checkbox" disabled> Buttons have yellow glow shadow or simple border</li>
+<li class="task-list-item"><input type="checkbox" disabled> Card containers use offset shadow pattern</li>
+<li class="task-list-item"><input type="checkbox" disabled> Mobile-first responsive design (1-column → 2-column → 3/4-column)</li>
+<li class="task-list-item"><input type="checkbox" disabled> Standard breakpoints (600px, 900px, 1200px)</li>
+<li class="task-list-item"><input type="checkbox" disabled> Section padding is generous (128px vertical on desktop)</li>
+<li class="task-list-item"><input type="checkbox" disabled> Grid gaps follow 8px increments (16px, 24px, 32px, 48px, etc.)</li>
+<li class="task-list-item"><input type="checkbox" disabled> Transitions use standard easing (0.2s or 0.3s)</li>
+<li class="task-list-item"><input type="checkbox" disabled> Dark sections use <code>--text-color-inverse</code> and <code>--text-color-muted</code></li>
+</ul></div>
+<div><h2 id="file-userspaoloexcatsdk-5design_systemmd">File: /Users/paolo/excat/sdk-5/DESIGN_SYSTEM.md</h2><p><strong>Generated:</strong> 2025-11-04
+<strong>Based on:</strong> styles.css + all block CSS files in /blocks/</p></div>
+</main>
+<footer></footer>
+</body>
+</html>
