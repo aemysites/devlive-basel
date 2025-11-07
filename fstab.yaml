@@ -1,4 +1,4 @@
 mountpoints:
   /:
-    url: https://content.da.live/aemysites/devlive-basel/
+    url: https://content.da.live/paolomoz/devlive-basel/
     type: markup
